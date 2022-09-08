@@ -1,0 +1,167 @@
+---
+import { getCurrentRoute } from '$utils/navigation';
+
+const APP_ROUTES: App.Route[] = [
+  { name: 'home', href: '/', base: '/' },
+  { name: 'destination', href: '/destination', base: '/destination' },
+  { name: 'crew', href: '/crew', base: '/crew' },
+  { name: 'technology', href: '/technology', base: '/technology' },
+];
+
+const currentRoute = getCurrentRoute(Astro.url.pathname);
+---
+
+<header class="header flex">
+  <!-- logo -->
+  <a class="logo" href="/">
+    <span class="sr-only">Homepage</span>
+    <img src="/assets/shared/logo.svg" alt="Space Tourism Logo" />
+  </a>
+  <!-- primary navigation -->
+  <nav class="flex">
+    <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+      <span class="sr-only">Menu</span>
+    </button>
+    <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+      {
+        APP_ROUTES.map((route, index) => (
+          <li>
+            <a
+              class:list={[
+                'nav-link underline-indicator uppercase text-light ls-wider ff-condensed fs-nav',
+                { active: route.base === currentRoute },
+              ]}
+              href={route.href}>
+              <span aria-hidden="true">{index.toString().padStart(2, '0')}</span>
+              {route.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  /* header */
+  .header {
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-inline: 1.5rem;
+  }
+
+  .logo {
+    flex-shrink: 0;
+    width: 2.5rem;
+    margin-right: auto;
+  }
+
+  .primary-navigation {
+    background-color: hsl(var(--clr-dark) / 0.5);
+    backdrop-filter: blur(80px);
+  }
+  @supports (backdrop-filter: blur(80px)) {
+    .primary-navigation {
+      background-color: hsl(var(--clr-light) / 0.04);
+      backdrop-filter: blur(80px);
+    }
+  }
+  .primary-navigation a {
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1;
+  }
+  .primary-navigation span {
+    font-weight: var(--fw-bold);
+    margin-right: 0.75rem;
+  }
+
+  @media (--screen-mobile-only) {
+    .primary-navigation a::after {
+      display: none;
+    }
+    .primary-navigation {
+      --flex-gap: 2rem;
+      position: fixed;
+      flex-direction: column;
+      z-index: 999;
+      inset: 0 0 0 32%;
+      padding-top: 7.35rem;
+      padding-inline: 2rem;
+      transform: translateX(100%);
+      opacity: 0;
+      transition: transform 300ms ease-out, opacity 300ms linear;
+    }
+    .primary-navigation[data-visible='true'] {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .mobile-nav-toggle {
+      cursor: pointer;
+      z-index: 9999;
+      width: 1.5rem;
+      aspect-ratio: 1;
+      background-image: url('/assets/shared/icon-hamburger.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .mobile-nav-toggle[aria-expanded='true'] {
+      background-image: url('/assets/shared/icon-close.svg');
+    }
+  }
+
+  @media (--screen-tablet-only) {
+    .primary-navigation span {
+      display: none;
+    }
+  }
+
+  @media (--screen-tablet) {
+    .header {
+      margin-top: 0;
+      margin-right: 0;
+      margin-left: 2.5rem;
+    }
+    .logo {
+      width: 3rem;
+    }
+    .primary-navigation {
+      --flex-gap: 2.5rem;
+      padding-inline: 3rem;
+    }
+    .primary-navigation a {
+      padding-block: 2.5rem;
+    }
+    .mobile-nav-toggle {
+      display: none;
+    }
+  }
+
+  @media (--screen-desktop) {
+    .header {
+      margin-top: 2.5rem;
+      margin-right: 0;
+      margin-left: 2.5rem;
+    }
+    .primary-navigation {
+      --flex-gap: 3rem;
+      padding-left: clamp(3rem, 8vw, 7.5rem);
+      padding-right: clamp(3rem, 8vw, 10rem);
+    }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector('.primary-navigation') as HTMLDivElement;
+  const navToggle = document.querySelector('.mobile-nav-toggle') as HTMLButtonElement;
+
+  const handleNavToggle = () => {
+    const next = navToggle.getAttribute('aria-expanded') === 'true' ? 'false' : 'true';
+    navToggle.setAttribute('aria-expanded', next);
+    nav.setAttribute('data-visible', next);
+  };
+
+  navToggle.addEventListener('click', handleNavToggle);
+</script>
