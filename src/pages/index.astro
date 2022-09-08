@@ -7,3 +7,21 @@ import Layout from '$layouts/Layout.astro';
     <h1>Hello World</h1>
   </main>
 </Layout>
+
+<style is:global>
+  body {
+    background-image: url('/assets/home/background-home-mobile.jpg');
+    background-position: bottom center;
+  }
+  @media (--screen-tablet) {
+    body {
+      background-image: url('/assets/home/background-home-tablet.jpg');
+    }
+  }
+  @media (--screen-desktop) {
+    body {
+      background-image: url('/assets/home/background-home-desktop.jpg');
+      background-position: center;
+    }
+  }
+</style>
