@@ -45,6 +45,7 @@ const currentRoute = getCurrentRoute(Astro.url.pathname);
 <style>
   /* header */
   .header {
+    --flex-gap: 0;
     align-items: center;
     margin-top: 1.5rem;
     margin-inline: 1.5rem;
@@ -144,6 +145,23 @@ const currentRoute = getCurrentRoute(Astro.url.pathname);
       margin-top: 2.5rem;
       margin-right: 0;
       margin-left: 2.5rem;
+    }
+    .header::after {
+      content: '';
+      display: block;
+      position: relative;
+      z-index: 999;
+      margin-right: -2rem;
+      height: 1px;
+      flex: 1;
+      background-color: hsl(var(--clr-light));
+      opacity: 0.25;
+    }
+    .logo {
+      margin-right: 4rem;
+    }
+    nav {
+      order: 1;
     }
     .primary-navigation {
       --flex-gap: 3rem;
