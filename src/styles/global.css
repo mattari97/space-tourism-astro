@@ -299,6 +299,35 @@ a:not([class]) {
   max-width: 87.5rem; /* 1400 px */
 }
 
+.grid-container {
+  flex: 1;
+  border: 1px solid purple;
+  display: grid;
+  gap: var(--container-gap, 2rem);
+  padding-inline: 1.5rem;
+}
+
+@media (--screen-tablet) {
+  .grid-container {
+    padding-inline: 2.5rem;
+  }
+}
+
+@media (--screen-desktop) {
+  .grid-container {
+    padding-inline: 0;
+    grid-template-columns: minmax(1.5rem, 1fr) repeat(2, minmax(0, 35rem)) minmax(1.5rem, 1fr);
+  }
+  .grid-container > *:first-child {
+    outline: 1px solid red;
+    grid-column: 2;
+  }
+  .grid-container > *:last-child {
+    outline: 1px solid yellow;
+    grid-column: 3;
+  }
+}
+
 .underline-indicator {
   position: relative;
 }
