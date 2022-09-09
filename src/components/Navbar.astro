@@ -41,7 +41,8 @@ const currentRoute = getCurrentRoute(Astro.url.pathname);
   .header {
     --flex-gap: 0;
     align-items: center;
-    margin: 1.5rem;
+    margin-top: 1.5rem;
+    margin-inline: 1.5rem;
   }
 
   .logo {
@@ -114,7 +115,7 @@ const currentRoute = getCurrentRoute(Astro.url.pathname);
 
   @media (--screen-tablet) {
     .header {
-      margin: 0 0 2.5rem 2.5rem;
+      margin: 0 0 0 2.5rem;
     }
     .logo {
       width: 3rem;
@@ -133,7 +134,7 @@ const currentRoute = getCurrentRoute(Astro.url.pathname);
 
   @media (--screen-desktop) {
     .header {
-      margin-block: 2.5rem 4.75rem;
+      margin-top: 2.5rem;
     }
     .header::after {
       content: '';
