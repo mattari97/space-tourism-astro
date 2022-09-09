@@ -10,6 +10,5 @@ module.exports = {
         'custom-selectors': true,
       },
     }),
-    require('cssnano'),
   ],
 };
