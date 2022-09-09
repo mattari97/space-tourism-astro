@@ -1,0 +1,83 @@
+---
+import NumberedTitle from '$components/NumberedTitle.astro';
+import Layout from '$layouts/Layout.astro';
+import { getDataForRoute, Param } from '$utils/navigation';
+
+export function getStaticPaths() {
+  const pages: { destination: Param<'destination'>; props: any }[] = [
+    { destination: 'moon', props: getDataForRoute('destination', 'moon') },
+    { destination: 'mars', props: getDataForRoute('destination', 'mars') },
+    { destination: 'europa', props: getDataForRoute('destination', 'europa') },
+    { destination: 'titan', props: getDataForRoute('destination', 'titan') },
+  ];
+  return pages.map(({ destination, props }) => {
+    return { params: { destination }, props };
+  });
+}
+const props = Astro.props as App.Destination;
+---
+
+<Layout title="Frontend Mentor | Destination">
+  <div class="grid-container">
+    <div class="container-left space-y">
+      <NumberedTitle label="Pick your destination" number="01" />
+      <img src="/assets/destination/image-moon.webp" alt="The Moon" />
+    </div>
+    <div class="container-right">
+      <div class="tabs-navigation underline-indicators flex">
+        <button aria-selected="true" class="active uppercase text-muted tracking-wider font-condensed text-nav">
+          Moon
+        </button>
+        <button aria-selected="false" class="uppercase text-muted tracking-wider font-condensed text-nav">Mars</button>
+        <button aria-selected="false" class="uppercase text-muted tracking-wider font-condensed text-nav">Europa</button
+        >
+      </div>
+      <h1>{props.name}</h1>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  body {
+    background-image: url('/assets/destination/background-destination-mobile.jpg');
+    background-position: center;
+  }
+  @media (--screen-tablet) {
+    body {
+      background-image: url('/assets/destination/background-destination-tablet.jpg');
+    }
+  }
+  @media (--screen-desktop) {
+    body {
+      background-image: url('/assets/destination/background-destination-desktop.jpg');
+    }
+  }
+</style>
+
+<style>
+  .grid-container {
+    --container-my: 1.5rem 3rem;
+    --container-gap: 1.5rem;
+  }
+
+  .container-left {
+    --space-y: 1.5rem;
+    text-align: center;
+  }
+
+  .container-left img {
+    max-width: 60%;
+    margin-inline: auto;
+  }
+
+  @media (--screen-tablet) {
+    .grid-container {
+      --container-my: 2.5rem;
+      --container-gap: 3.75rem;
+    }
+    .container-left {
+      --space-y: 3.75rem;
+      text-align: left;
+    }
+  }
+</style>
