@@ -1,0 +1,26 @@
+---
+export interface Props {
+  name: string;
+  href: string;
+  active: boolean;
+}
+
+const { active, href, name } = Astro.props;
+---
+
+<a class:list={['underline-indicator uppercase text-muted ls-wider ff-condensed', { active }]} href={href}>
+  {name}
+</a>
+
+<style>
+  a {
+    font-size: 0.875rem;
+    padding-bottom: 0.75rem;
+  }
+
+  @media (--screen-tablet) {
+    a {
+      font-size: 1rem;
+    }
+  }
+</style>

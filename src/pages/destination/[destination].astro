@@ -2,6 +2,7 @@
 import Layout from '$layouts/Layout.astro';
 import NumberedTitle from '$components/NumberedTitle.astro';
 import DestinationMeta from '$components/DestinationMeta.astro';
+import TabBarItem from '$components/TabBarItem.astro';
 import { getDataForRoute, Param } from '$utils/navigation';
 import { DESTINATION_TABS } from '$constants/routes';
 
@@ -30,14 +31,7 @@ const props = Astro.props as App.Destination;
       <nav class="tabs flex">
         {
           DESTINATION_TABS.map((tab) => (
-            <a
-              class:list={[
-                'underline-indicator uppercase text-muted ls-wider ff-condensed',
-                { active: tab.name === destination },
-              ]}
-              href={tab.href}>
-              {tab.name}
-            </a>
+            <TabBarItem active={tab.name === destination} href={tab.href} name={tab.name} />
           ))
         }
       </nav>
@@ -92,10 +86,6 @@ const props = Astro.props as App.Destination;
   .tabs {
     --flex-gap: 1.5rem;
   }
-  .tabs a {
-    font-size: 0.875rem;
-    padding-bottom: 0.75rem;
-  }
   .presentation {
     padding-block: 1.25rem 2rem;
     border-bottom: 1px solid hsl(var(--clr-divider));
@@ -120,9 +110,6 @@ const props = Astro.props as App.Destination;
     }
     .tabs {
       --flex-gap: 2.25rem;
-    }
-    .tabs a {
-      font-size: 1rem;
     }
 
     .presentation {
