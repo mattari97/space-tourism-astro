@@ -1,7 +1,9 @@
 ---
-import NumberedTitle from '$components/NumberedTitle.astro';
 import Layout from '$layouts/Layout.astro';
+import NumberedTitle from '$components/NumberedTitle.astro';
+import DestinationMeta from '$components/DestinationMeta.astro';
 import { getDataForRoute, Param } from '$utils/navigation';
+import { DESTINATION_TABS } from '$constants/routes';
 
 export function getStaticPaths() {
   const pages: { destination: Param<'destination'>; props: any }[] = [
@@ -14,25 +16,39 @@ export function getStaticPaths() {
     return { params: { destination }, props };
   });
 }
+const { destination } = Astro.params;
 const props = Astro.props as App.Destination;
 ---
 
 <Layout title="Frontend Mentor | Destination">
   <div class="grid-container">
-    <div class="container-left space-y">
+    <div class="container-left grid">
       <NumberedTitle label="Pick your destination" number="01" />
-      <img src="/assets/destination/image-moon.webp" alt="The Moon" />
+      <img src={props.images.webp} alt={props.name} />
     </div>
-    <div class="container-right">
-      <div class="tabs-navigation underline-indicators flex">
-        <button aria-selected="true" class="active uppercase text-muted tracking-wider font-condensed text-nav">
-          Moon
-        </button>
-        <button aria-selected="false" class="uppercase text-muted tracking-wider font-condensed text-nav">Mars</button>
-        <button aria-selected="false" class="uppercase text-muted tracking-wider font-condensed text-nav">Europa</button
-        >
+    <div class="container-right grid">
+      <nav class="tabs flex">
+        {
+          DESTINATION_TABS.map((tab) => (
+            <a
+              class:list={[
+                'underline-indicator uppercase text-muted ls-wider ff-condensed',
+                { active: tab.name === destination },
+              ]}
+              href={tab.href}>
+              {tab.name}
+            </a>
+          ))
+        }
+      </nav>
+      <div class="presentation">
+        <h2 class="uppercase text-light fs-2xl ff-serif">{props.name}</h2>
+        <p>{props.description}</p>
       </div>
-      <h1>{props.name}</h1>
+      <div class="details flex">
+        <DestinationMeta title="AVG. DISTANCE" content={props.distance} />
+        <DestinationMeta title="Est. travel time" content={props.distance} />
+      </div>
     </div>
   </div>
 </Layout>
@@ -56,28 +72,92 @@ const props = Astro.props as App.Destination;
 
 <style>
   .grid-container {
-    --container-my: 1.5rem 3rem;
     --container-gap: 1.5rem;
   }
 
   .container-left {
-    --space-y: 1.5rem;
+    --grid-gap: 1.5rem;
     text-align: center;
   }
-
   .container-left img {
+    justify-self: center;
     max-width: 60%;
-    margin-inline: auto;
+  }
+
+  .container-right {
+    --grid-gap: 0rem;
+    justify-items: center;
+    text-align: center;
+  }
+  .tabs {
+    --flex-gap: 1.5rem;
+  }
+  .tabs a {
+    font-size: 0.875rem;
+    padding-bottom: 0.75rem;
+  }
+  .presentation {
+    padding-block: 1.25rem 2rem;
+    border-bottom: 1px solid hsl(var(--clr-divider));
+  }
+  .presentation p {
+    max-width: 62ch;
+  }
+  .details {
+    --flex-gap: 2rem;
+    flex-direction: column;
+    margin-top: 2rem;
   }
 
   @media (--screen-tablet) {
     .grid-container {
-      --container-my: 2.5rem;
       --container-gap: 3.75rem;
     }
+
     .container-left {
-      --space-y: 3.75rem;
+      --grid-gap: 3.75rem;
       text-align: left;
+    }
+    .tabs {
+      --flex-gap: 2.25rem;
+    }
+    .tabs a {
+      font-size: 1rem;
+    }
+
+    .presentation {
+      padding-block: 2rem 3rem;
+    }
+
+    .details {
+      --flex-gap: 4.5rem;
+      flex-direction: row;
+    }
+  }
+
+  @media (--screen-desktop) {
+    .grid-container {
+      --container-gap: 9rem;
+    }
+
+    .container-left {
+      --grid-gap: 6rem;
+    }
+    .container-left img {
+      max-width: 90%;
+      place-self: end;
+    }
+
+    .container-right {
+      place-self: end;
+      justify-items: start;
+      text-align: left;
+    }
+    .presentation {
+      padding-block: 2.25rem 3.375rem;
+    }
+    .presentation p {
+      max-width: 44ch;
     }
   }
 </style>

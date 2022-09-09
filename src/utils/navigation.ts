@@ -7,7 +7,7 @@ const routes = {
   technology: ['launch_vehicle', 'spaceport', 'space_capsule'] as const,
 } as const;
 
-type Route = keyof typeof routes;
+export type Route = keyof typeof routes;
 export type Param<TRoute extends Route> = typeof routes[TRoute][number];
 
 export const getCurrentRoute = (pathname: string): 'home' | Route | undefined => {

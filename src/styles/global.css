@@ -22,6 +22,7 @@
   --clr-dark: 230 35% 7%;
   --clr-muted: 231 77% 90%;
   --clr-light: 0 0% 100%;
+  --clr-divider: 231 15% 26%;
 
   /* font-families */
   --ff-serif: 'Bellefair', serif;
@@ -337,6 +338,13 @@ a:not([class]) {
 
 .underline-indicator {
   position: relative;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1;
+}
+.underline-indicator.active,
+.underline-indicator[aria-selected='true'] {
+  color: hsl(var(--clr-light));
 }
 .underline-indicator::after {
   content: '';

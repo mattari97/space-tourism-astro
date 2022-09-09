@@ -61,11 +61,6 @@ const currentRoute = getCurrentRoute(Astro.url.pathname);
       backdrop-filter: blur(80px);
     }
   }
-  .primary-navigation a {
-    text-decoration: none;
-    display: inline-block;
-    line-height: 1;
-  }
   .primary-navigation span {
     font-weight: var(--fw-bold);
     margin-right: 0.75rem;
@@ -84,11 +79,9 @@ const currentRoute = getCurrentRoute(Astro.url.pathname);
       padding-top: 7.35rem;
       padding-inline: 2rem;
       transform: translateX(100%);
-      opacity: 0;
-      transition: transform 300ms ease-out, opacity 300ms linear;
+      transition: transform 300ms ease-out;
     }
     .primary-navigation[data-visible='true'] {
-      opacity: 1;
       transform: translateX(0);
     }
 
