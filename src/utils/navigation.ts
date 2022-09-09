@@ -24,6 +24,6 @@ export const generateUrl = <T extends Route>(route: T, param: Param<T>) => {
 
 export const getDataForRoute = <T extends Route>(route: T, param: Param<T>) => {
   const dataset = pagesData[route];
-  const index = dataset.findIndex((item) => item.name.toLowerCase() === param);
+  const index = dataset.findIndex((item) => item.id === param);
   return dataset[index];
 };
