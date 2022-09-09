@@ -113,6 +113,8 @@ body {
   font-size: var(--fs-base);
   background-color: hsl(var(--clr-dark));
   color: hsl(var(--clr-muted));
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 img,
@@ -306,12 +308,14 @@ a:not([class]) {
 .grid-container {
   flex: 1;
   display: grid;
-  gap: var(--container-gap, 2rem);
+  gap: var(--container-gap, 1.5rem);
+  margin-block: var(--container-my, 1.5rem);
   padding-inline: 1.5rem;
 }
 
 @media (--screen-tablet) {
   .grid-container {
+    margin-block: var(--container-my, 2.5rem);
     padding-inline: 2.5rem;
   }
 }
@@ -319,6 +323,7 @@ a:not([class]) {
 @media (--screen-desktop) {
   .grid-container {
     --container-gap: 3rem;
+    margin-block: var(--container-my, 4.75rem);
     padding-inline: 0;
     grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, 35rem)) minmax(0, 1fr);
   }
