@@ -1,0 +1,53 @@
+---
+export interface Props {
+  href: string;
+}
+
+const { href } = Astro.props;
+---
+
+<a class="explore-btn bg-light text-dark ff-serif uppercase" href={href}><slot /></a>
+
+<style>
+  .explore-btn {
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding: 1.5em;
+    width: 9.375rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    text-decoration: none;
+  }
+
+  .explore-btn::after {
+    content: '';
+    position: absolute;
+    isolation: isolate;
+    inset: 0;
+    border-radius: 50%;
+    background-color: hsl(var(--clr-light) / 0.1);
+    opacity: 0;
+    transition: opacity 500ms linear, transform 500ms ease-in-out;
+  }
+
+  .explore-btn:hover::after,
+  .explore-btn:focus::after {
+    opacity: 1;
+    transform: scale(1.64);
+  }
+
+  @media (--screen-tablet) {
+    .explore-btn {
+      font-size: 2rem;
+      width: 15.125rem;
+    }
+  }
+
+  @media (--screen-desktop) {
+    .explore-btn {
+      width: 17.125rem;
+    }
+  }
+</style>

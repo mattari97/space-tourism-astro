@@ -112,7 +112,7 @@ body {
   font-weight: var(--fw-normal);
   font-size: var(--fs-base);
   background-color: hsl(var(--clr-dark));
-  color: hsl(var(--clr-light));
+  color: hsl(var(--clr-muted));
 }
 
 img,
@@ -141,6 +141,7 @@ ol {
 }
 
 p,
+span,
 :--heading {
   font: inherit;
   overflow-wrap: break-word;
@@ -241,6 +242,9 @@ a:not([class]) {
 }
 
 /* letter-spacings */
+.ls-normal {
+  letter-spacing: 0;
+}
 .ls-wide {
   letter-spacing: var(--ls-wide);
 }
@@ -301,7 +305,6 @@ a:not([class]) {
 
 .grid-container {
   flex: 1;
-  border: 1px solid purple;
   display: grid;
   gap: var(--container-gap, 2rem);
   padding-inline: 1.5rem;
@@ -315,15 +318,14 @@ a:not([class]) {
 
 @media (--screen-desktop) {
   .grid-container {
+    --container-gap: 3rem;
     padding-inline: 0;
-    grid-template-columns: minmax(1.5rem, 1fr) repeat(2, minmax(0, 35rem)) minmax(1.5rem, 1fr);
+    grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, 35rem)) minmax(0, 1fr);
   }
   .grid-container > *:first-child {
-    outline: 1px solid red;
     grid-column: 2;
   }
   .grid-container > *:last-child {
-    outline: 1px solid yellow;
     grid-column: 3;
   }
 }

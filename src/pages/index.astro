@@ -1,10 +1,23 @@
 ---
 import Layout from '$layouts/Layout.astro';
+import ExploreBtn from '$components/ExploreButton.astro';
 ---
 
 <Layout title="Frontend Mentor | Space tourism website">
-  <main>
-    <h1>Hello World</h1>
+  <main class="grid-container">
+    <div class="container-left space-y">
+      <h1 class="uppercase space-y">
+        <span class="fs-md ff-condensed ls-widest">So, you want to travel to</span>
+        <span class="fs-3xl ff-serif ls-normal text-light">Space</span>
+      </h1>
+      <p>
+        Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of
+        on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!
+      </p>
+    </div>
+    <div class="container-right">
+      <ExploreBtn href="/destination">Explore</ExploreBtn>
+    </div>
   </main>
 </Layout>
 
@@ -23,5 +36,29 @@ import Layout from '$layouts/Layout.astro';
       background-image: url('/assets/home/background-home-desktop.jpg');
       background-position: center;
     }
+  }
+</style>
+
+<style>
+  .container-left {
+    --space-y: 1.5rem;
+    place-self: end start;
+  }
+
+  .container-left h1 > * {
+    display: block;
+  }
+
+  .container-left p {
+    max-width: 45ch;
+  }
+
+  .container-left,
+  .container-right {
+    margin-bottom: max(8rem, 15vh);
+  }
+
+  .container-right {
+    place-self: end end;
   }
 </style>
