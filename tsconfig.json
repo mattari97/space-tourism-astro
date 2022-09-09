@@ -18,6 +18,9 @@
       "$constants/*": [
         "src/constants/*"
       ],
+      "$data/*": [
+        "src/data/*"
+      ],
     }
   }
 }
