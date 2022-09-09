@@ -1,0 +1,31 @@
+---
+export interface Props {
+  label: string;
+  number: string;
+}
+
+const { label, number } = Astro.props;
+---
+
+<h1 class="uppercase fs-md ff-condensed ls-widest">
+  <span class="fw-bold">{number}</span><span>{label}</span>
+</h1>
+
+<style>
+  h1 > span:first-child {
+    color: hsl(var(--clr-light) / 0.25);
+    margin-right: 1.125rem;
+  }
+
+  @media (--screen-tablet) {
+    h1 > span:first-child {
+      margin-right: 1.25rem;
+    }
+  }
+
+  @media (--screen-desktop) {
+    h1 > span:first-child {
+      margin-right: 1.5rem;
+    }
+  }
+</style>
