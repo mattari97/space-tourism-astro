@@ -15,6 +15,9 @@
       "$utils/*": [
         "src/utils/*"
       ],
+      "$constants/*": [
+        "src/constants/*"
+      ],
     }
   }
 }
