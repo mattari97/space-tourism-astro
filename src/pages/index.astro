@@ -40,9 +40,15 @@ import ExploreBtn from '$components/ExploreButton.astro';
 </style>
 
 <style>
+  .grid-container {
+    --container-gap: 5rem;
+    margin-block: 3rem;
+    text-align: center;
+  }
+
   .container-left {
-    --space-y: 1.5rem;
-    place-self: end start;
+    --space-y: 1rem;
+    justify-self: center;
   }
 
   .container-left h1 > * {
@@ -51,14 +57,34 @@ import ExploreBtn from '$components/ExploreButton.astro';
 
   .container-left p {
     max-width: 45ch;
-  }
-
-  .container-left,
-  .container-right {
-    margin-bottom: max(8rem, 15vh);
+    margin-inline: auto;
   }
 
   .container-right {
-    place-self: end end;
+    justify-self: center;
+  }
+
+  @media (--screen-tablet) {
+    .grid-container {
+      margin-block: 5.625rem;
+    }
+    .container-left {
+      --space-y: 1.5rem;
+    }
+  }
+
+  @media (--screen-desktop) {
+    .grid-container {
+      text-align: left;
+      margin-block: 3rem max(8rem, 18vh);
+    }
+
+    .container-left {
+      place-self: end start;
+    }
+
+    .container-right {
+      place-self: end;
+    }
   }
 </style>
