@@ -23,7 +23,7 @@ const currentRoute = getCurrentRoute(Astro.url.pathname);
             <a
               class:list={[
                 'nav-link underline-indicator uppercase text-light ls-wider ff-condensed fs-nav',
-                { active: route.base === currentRoute },
+                { active: route.name === currentRoute },
               ]}
               href={route.href}>
               <span aria-hidden="true">{index.toString().padStart(2, '0')}</span>

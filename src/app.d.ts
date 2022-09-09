@@ -4,7 +4,6 @@ declare namespace App {
   interface Route {
     name: string;
     href: string;
-    base: string;
   }
 
   interface Destination {

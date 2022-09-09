@@ -1,6 +1,7 @@
 ---
 import Layout from '$layouts/Layout.astro';
 import ExploreBtn from '$components/ExploreButton.astro';
+import { generateUrl } from '$utils/navigation';
 ---
 
 <Layout title="Frontend Mentor | Space tourism website">
@@ -16,7 +17,7 @@ import ExploreBtn from '$components/ExploreButton.astro';
       </p>
     </div>
     <div class="container-right">
-      <ExploreBtn href="/destination">Explore</ExploreBtn>
+      <ExploreBtn href={generateUrl('destination', 'moon')}>Explore</ExploreBtn>
     </div>
   </main>
 </Layout>
