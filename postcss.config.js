@@ -9,6 +9,8 @@ module.exports = {
         'media-query-ranges': true,
         'custom-selectors': true,
       },
+      importFrom: './src/styles/global.css',
+      exportTo: './src/**/*.astro',
     }),
   ],
 };
