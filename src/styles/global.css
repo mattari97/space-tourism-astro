@@ -356,7 +356,7 @@ a:not([class]) {
   margin-inline: auto;
   column-gap: var(--container-gap, 2rem);
   text-align: center;
-  border: 2px solid green;
+  /* border: 2px solid green; */
 }
 
 @media (--screen-tablet) {
