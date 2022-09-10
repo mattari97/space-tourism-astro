@@ -12,20 +12,27 @@ const { label, number } = Astro.props;
 </h1>
 
 <style>
+  h1 {
+    grid-area: numbered-title;
+    margin-bottom: 2rem;
+  }
+
   h1 > span:first-child {
     color: hsl(var(--clr-light) / 0.25);
-    margin-right: 1.125rem;
+    margin-right: clamp(1.13rem, calc(0.88rem + 1.03vw), 1.5rem);
   }
 
   @media (--screen-tablet) {
-    h1 > span:first-child {
-      margin-right: 1.25rem;
+    h1 {
+      justify-self: start;
+      margin-bottom: 3.75rem;
     }
   }
 
   @media (--screen-desktop) {
-    h1 > span:first-child {
-      margin-right: 1.5rem;
+    h1 {
+      justify-self: start;
+      margin-bottom: 3.75rem;
     }
   }
 </style>

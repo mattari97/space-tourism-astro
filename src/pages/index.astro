@@ -6,7 +6,7 @@ import { generateUrl } from '$utils/navigation';
 
 <Layout title="Frontend Mentor | Space tourism website">
   <main class="grid-container">
-    <div class="container-left space-y">
+    <div class="presentation space-y">
       <h1 class="uppercase space-y">
         <span class="fs-md ff-condensed ls-widest">So, you want to travel to</span>
         <span class="fs-3xl ff-serif ls-normal text-light">Space</span>
@@ -16,16 +16,40 @@ import { generateUrl } from '$utils/navigation';
         on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!
       </p>
     </div>
-    <div class="container-right">
+    <div class="call-to-action">
       <ExploreBtn href={generateUrl('destination', 'moon')}>Explore</ExploreBtn>
     </div>
   </main>
 </Layout>
 
+<style>
+  .grid-container {
+    padding: calc(var(--gutters-block) * 1.5) var(--gutters-inline) calc(var(--gutters-block) * 2);
+    place-items: center;
+    row-gap: clamp(2rem, calc(-0.56rem + 10.94vw), 6rem);
+  }
+  .presentation h1 > * {
+    display: block;
+  }
+
+  .presentation p {
+    max-width: 48ch;
+  }
+
+  @media (--screen-desktop) {
+    .grid-container {
+      place-items: end;
+    }
+    .presentation {
+      justify-self: start;
+    }
+  }
+</style>
+
 <style is:global>
   body {
     background-image: url('/assets/home/background-home-mobile.jpg');
-    background-position: bottom center;
+    background-position: bottom;
   }
   @media (--screen-tablet) {
     body {
@@ -36,56 +60,6 @@ import { generateUrl } from '$utils/navigation';
     body {
       background-image: url('/assets/home/background-home-desktop.jpg');
       background-position: center;
-    }
-  }
-</style>
-
-<style>
-  .grid-container {
-    --container-gap: 5rem;
-    --container-my: 3rem;
-    text-align: center;
-  }
-
-  .container-left {
-    --space-y: 1rem;
-    justify-self: center;
-  }
-
-  .container-left h1 > * {
-    display: block;
-  }
-
-  .container-left p {
-    max-width: 45ch;
-    margin-inline: auto;
-  }
-
-  .container-right {
-    justify-self: center;
-  }
-
-  @media (--screen-tablet) {
-    .grid-container {
-      --container-my: 5.625rem;
-    }
-    .container-left {
-      --space-y: 1.5rem;
-    }
-  }
-
-  @media (--screen-desktop) {
-    .grid-container {
-      text-align: left;
-      --container-my: 3rem max(8.125rem, 14vh);
-    }
-
-    .container-left {
-      place-self: end start;
-    }
-
-    .container-right {
-      place-self: end;
     }
   }
 </style>
