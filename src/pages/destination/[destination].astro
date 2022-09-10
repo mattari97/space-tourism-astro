@@ -25,16 +25,22 @@ const props = Astro.props as App.Destination;
   <div class="grid-container">
     <NumberedTitle label="Pick your destination" number="01" />
     <img src={props.images.webp} alt={props.name} />
-    <nav class="tabs flex">
-      {DESTINATION_TABS.map((tab) => <TabBarItem active={tab.name === destination} href={tab.href} name={tab.name} />)}
-    </nav>
-    <div class="presentation space-y">
-      <h2 class="uppercase text-light fs-2xl ff-serif">{props.name}</h2>
-      <p>{props.description}</p>
-    </div>
-    <div class="details flex">
-      <DestinationMeta title="AVG. DISTANCE" content={props.distance} />
-      <DestinationMeta title="Est. travel time" content={props.distance} />
+    <div class="informations grid">
+      <nav class="tabs flex">
+        {
+          DESTINATION_TABS.map((tab) => (
+            <TabBarItem active={tab.name === destination} href={tab.href} name={tab.name} />
+          ))
+        }
+      </nav>
+      <div class="presentation space-y">
+        <h2 class="uppercase text-light fs-2xl ff-serif">{props.name}</h2>
+        <p>{props.description}</p>
+      </div>
+      <div class="details flex">
+        <DestinationMeta title="AVG. DISTANCE" content={props.distance} />
+        <DestinationMeta title="Est. travel time" content={props.distance} />
+      </div>
     </div>
   </div>
 </Layout>
@@ -42,38 +48,37 @@ const props = Astro.props as App.Destination;
 <style>
   .grid-container {
     padding: var(--gutters-block) var(--gutters-inline);
-    place-items: center;
-    grid-auto-rows: min-content;
     grid-template-areas:
       'numbered-title'
       'image'
-      'navigation'
-      'presentation'
-      'meta';
+      'informations';
   }
 
   .grid-container > img {
     grid-area: image;
     max-width: 60%;
+    place-self: center;
+  }
+  .informations {
+    grid-area: informations;
+    --grid-gap: 2rem;
+    margin-top: 2rem;
+    place-items: center;
   }
   .tabs {
-    grid-area: navigation;
-    margin-block: 2rem;
     --flex-gap: clamp(1.5rem, calc(0.44rem + 4.53vw), 2.25rem);
   }
   .presentation {
-    grid-area: presentation;
     --space-y: clamp(0rem, calc(-0.64rem + 2.74vw), 1rem);
-    padding-bottom: 2rem;
+    padding-bottom: clamp(2rem, calc(1.04rem + 4.1vw), 3.5rem);
     border-bottom: 1px solid hsl(var(--clr-divider));
   }
+
   .presentation > p {
-    max-width: 62ch;
+    max-width: 45ch;
   }
   .details {
-    grid-area: meta;
     flex-direction: column;
-    margin-top: 2rem;
     --flex-gap: 2rem;
   }
 
@@ -81,11 +86,7 @@ const props = Astro.props as App.Destination;
     .grid-container > img {
       max-width: 100%;
     }
-    .presentation {
-      padding-bottom: clamp(3rem, calc(2rem + 2.5vw), 3.5rem);
-    }
     .details {
-      grid-area: meta;
       flex-direction: row;
       --flex-gap: 4.5rem;
     }
@@ -93,15 +94,18 @@ const props = Astro.props as App.Destination;
 
   @media (--screen-desktop) {
     .grid-container {
-      place-items: end start;
+      place-items: end;
       grid-template-areas:
         'numbered-title .'
-        'image navigation'
-        'image presentation'
-        'image meta';
+        'image informations';
     }
     .grid-container > img {
-      justify-self: end;
+      place-self: end;
+    }
+    .informations {
+      place-self: end;
+      place-items: start;
+      margin-top: 0;
     }
   }
 </style>

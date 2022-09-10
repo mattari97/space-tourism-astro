@@ -349,46 +349,10 @@ a:not([class]) {
 /* Layout       */
 /* ------------ */
 
-/* .container {
-  padding-inline: 2em;
-  margin-inline: auto;
-  max-width: 87.5rem;
-}
-
 .grid-container {
   flex: 1;
   display: grid;
-  gap: var(--container-gap, 1.5rem);
-  margin-block: var(--container-my, 1.5rem);
-  padding-inline: 1.5rem;
-}
-
-@media (--screen-tablet) {
-  .grid-container {
-    margin-block: var(--container-my, 2.5rem);
-    padding-inline: 2.5rem;
-  }
-}
-
-@media (--screen-desktop) {
-  .grid-container {
-    --container-gap: 3rem;
-    margin-block: var(--container-my, 4.75rem);
-    padding-inline: 0;
-    grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, 35rem)) minmax(0, 1fr);
-  }
-  .grid-container > *:first-child {
-    grid-column: 2;
-  }
-  .grid-container > *:last-child {
-    grid-column: 3;
-  }
-} */
-
-.grid-container {
-  flex: 1;
-  display: grid;
-  width: min(100%, calc(70rem + (var(--gutters-inline) * 2)));
+  width: min(100%, calc(85rem + (var(--gutters-inline) * 2)));
   margin-inline: auto;
   column-gap: var(--container-gap, 2rem);
   text-align: center;
