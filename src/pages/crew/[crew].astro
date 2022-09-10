@@ -1,0 +1,160 @@
+---
+import Layout from '$layouts/Layout.astro';
+import NumberedTitle from '$components/NumberedTitle.astro';
+import TabBarDot from '$components/TabBarDot.astro';
+import { getDataForRoute, Param } from '$utils/navigation';
+import { CREW_TABS } from '$constants/routes';
+
+export function getStaticPaths() {
+  const pages: { crew: Param<'crew'>; props: any }[] = [
+    { crew: 'douglas', props: getDataForRoute('crew', 'douglas') },
+    { crew: 'mark', props: getDataForRoute('crew', 'mark') },
+    { crew: 'victor', props: getDataForRoute('crew', 'victor') },
+    { crew: 'anousheh', props: getDataForRoute('crew', 'anousheh') },
+  ];
+  return pages.map(({ crew, props }) => {
+    return { params: { crew }, props };
+  });
+}
+const { crew } = Astro.params;
+const props = Astro.props as App.Crew;
+---
+
+<Layout title="Frontend Mentor | Crew">
+  <div class="grid-container">
+    <NumberedTitle label="Meet your crew" number="02" />
+    <div class="image-wrapper"><img src={props.images.webp} alt={props.name} /></div>
+    <nav class="tabs flex">
+      {CREW_TABS.map((tab) => <TabBarDot active={tab.name === crew} href={tab.href} name={tab.name} />)}
+    </nav>
+    <div class="informations grid">
+      <h2 class="uppercase space-y">
+        <span class="fs-lg ff-serif">{props.role}</span>
+        <span class="text-light fs-xl ff-serif">{props.name}</span>
+      </h2>
+      <p>{props.bio}</p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .grid-container {
+    padding: var(--gutters-block) var(--gutters-inline);
+    grid-auto-rows: min-content;
+    grid-template-areas:
+      'numbered-title'
+      'image'
+      'tabs'
+      'informations';
+  }
+  .image-wrapper {
+    grid-area: image;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid hsl(var(--clr-divider));
+  }
+  .image-wrapper > img {
+    max-width: 72.5%;
+  }
+  .tabs {
+    grid-area: tabs;
+    justify-content: center;
+    margin-block: 2rem;
+  }
+  .informations {
+    grid-area: informations;
+    --grid-gap: 2rem;
+    place-items: center;
+  }
+  .informations h2 {
+    --space-y: 0.5rem;
+  }
+  .informations h2 > * {
+    display: block;
+  }
+  .informations h2 > *:first-child {
+    opacity: 0.5;
+  }
+  .informations p {
+    max-width: 51ch;
+  }
+
+  @media (--screen-tablet) {
+    .grid-container {
+      padding-bottom: 0;
+      grid-template-areas:
+        'numbered-title'
+        'informations'
+        'tabs'
+        'image';
+    }
+    .image-wrapper {
+      border-bottom: none;
+    }
+    .image-wrapper > img {
+      max-width: 100%;
+      max-height: 75vmin;
+    }
+    .tabs {
+      margin-block: 2.5rem;
+      order: 1;
+    }
+    .informations {
+      margin-top: 0;
+    }
+  }
+
+  @media (--screen-desktop) {
+    .grid-container {
+      grid-template-rows: min-content 1fr min-content;
+      grid-template-areas:
+        'numbered-title image'
+        'informations image'
+        'tabs image';
+    }
+    .image-wrapper {
+      justify-content: end;
+      align-items: flex-end;
+    }
+    .tabs {
+      --flex-gap: 1.5rem;
+      margin-bottom: var(--gutters-bottom-clamp);
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .informations {
+      place-self: center start;
+      place-items: start;
+    }
+  }
+</style>
+
+<style is:global>
+  body {
+    position: relative;
+  }
+  body::before {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: -9999;
+    opacity: 0.25;
+    background-image: url('/assets/crew/background-crew-mobile.jpg');
+    background-position: top;
+    background-size: cover;
+    background-blend-mode: screen;
+  }
+
+  @media (--screen-tablet) {
+    body::before {
+      background-image: url('/assets/crew/background-crew-tablet.jpg');
+    }
+  }
+
+  @media (--screen-desktop) {
+    body::before {
+      background-image: url('/assets/crew/background-crew-desktop.jpg');
+    }
+  }
+</style>

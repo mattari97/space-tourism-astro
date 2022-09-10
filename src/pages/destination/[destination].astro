@@ -84,7 +84,10 @@ const props = Astro.props as App.Destination;
 
   @media (--screen-tablet) {
     .grid-container > img {
-      max-width: 100%;
+      max-width: min(445px, 45vw);
+    }
+    .informations {
+      margin-top: 3.5rem;
     }
     .details {
       flex-direction: row;
@@ -95,6 +98,8 @@ const props = Astro.props as App.Destination;
   @media (--screen-desktop) {
     .grid-container {
       place-items: end;
+      grid-template-rows: min-content 1fr;
+      padding-bottom: var(--gutters-bottom-clamp);
       grid-template-areas:
         'numbered-title .'
         'image informations';

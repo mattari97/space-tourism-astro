@@ -81,8 +81,9 @@
     --fs-md: 1.75rem;
     --fs-nav: 1rem;
 
-    --gutters-inline: 3rem;
-    --gutters-block: 4.75rem;
+    --gutters-inline: 5rem;
+    --gutters-block: 5rem;
+    --gutters-bottom-clamp: max(5rem, 14vh);
   }
 }
 
@@ -368,6 +369,7 @@ a:not([class]) {
 @media (--screen-desktop) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
+    /* max-height: 47.75rem; */
     text-align: left;
     column-gap: var(--container-gap, 6rem);
   }

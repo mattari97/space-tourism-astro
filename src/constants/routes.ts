@@ -13,3 +13,10 @@ export const DESTINATION_TABS: App.Route<Param<'destination'>>[] = [
   { name: 'europa', href: generateUrl('destination', 'europa') },
   { name: 'titan', href: generateUrl('destination', 'titan') },
 ];
+
+export const CREW_TABS: App.Route<Param<'crew'>>[] = [
+  { name: 'douglas', href: generateUrl('crew', 'douglas') },
+  { name: 'mark', href: generateUrl('crew', 'mark') },
+  { name: 'victor', href: generateUrl('crew', 'victor') },
+  { name: 'anousheh', href: generateUrl('crew', 'anousheh') },
+];

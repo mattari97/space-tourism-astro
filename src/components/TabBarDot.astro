@@ -1,0 +1,32 @@
+---
+export interface Props {
+  name: string;
+  href: string;
+  active: boolean;
+}
+
+const { active, href, name } = Astro.props;
+---
+
+<a class:list={['bg-light', { active }]} href={href}>
+  <span class="sr-only">{name}</span>
+</a>
+
+<style>
+  a {
+    display: inline-block;
+    width: 1rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    opacity: 0.17;
+    transition: opacity 300ms linear;
+  }
+
+  a:hover {
+    opacity: 0.5;
+  }
+
+  a.active {
+    opacity: 1;
+  }
+</style>
