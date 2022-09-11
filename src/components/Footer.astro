@@ -7,10 +7,14 @@
 
 <style>
   footer {
-    padding: 1rem var(--gutters-inline);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0.75rem 1.5rem;
     text-align: center;
     font-size: 0.75rem;
     background-color: hsl(var(--clr-dark) / 0.5);
+    border-top-right-radius: 0.5rem;
   }
 
   @supports (backdrop-filter: var(--backdrop-blur)) {
@@ -26,11 +30,17 @@
 
   footer a {
     color: hsl(var(--clr-muted));
+    transition: color 150ms linear;
+  }
+
+  footer a:hover {
+    color: hsl(var(--clr-light));
   }
 
   @media (--screen-tablet) {
     footer {
       font-size: 0.875rem;
+      padding-inline: 2.5rem;
     }
   }
 </style>
