@@ -1,0 +1,50 @@
+---
+export interface Props {
+  name: string;
+  number: number;
+  href: string;
+  active: boolean;
+}
+
+const { active, href, name, number } = Astro.props;
+---
+
+<a class:list={['bg-dark text-light ff-serif fs-lg', { active }]} href={href}>
+  <span class="sr-only">{name}</span>
+  <span class="number">{number}</span>
+</a>
+
+<style>
+  a {
+    display: grid;
+    place-content: center;
+    text-decoration: none;
+    width: 2.5rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid hsl(var(--clr-light) / 0.25);
+    transition: border-color 300ms linear, color 300ms linear, background-color 300ms linear;
+  }
+
+  a:hover {
+    border-color: hsl(var(--clr-light));
+  }
+
+  a.active {
+    color: hsl(var(--clr-dark));
+    background-color: hsl(var(--clr-light));
+    border-color: hsl(var(--clr-light));
+  }
+
+  @media (--screen-tablet) {
+    a {
+      width: 3.75rem;
+    }
+  }
+
+  @media (--screen-desktop) {
+    a {
+      width: 5rem;
+    }
+  }
+</style>

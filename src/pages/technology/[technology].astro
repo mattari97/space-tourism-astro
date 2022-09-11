@@ -1,0 +1,147 @@
+---
+import Layout from '$layouts/Layout.astro';
+import NumberedTitle from '$components/NumberedTitle.astro';
+import TabBarNumber from '$components/TabBarNumber.astro';
+import TwoLineTitle from '$components/TwoLineTitle.astro';
+import { getDataForRoute, generateUrl } from '$utils/navigation';
+import { TECHNOLOGY_ROUTES } from '$constants/routes';
+
+export function getStaticPaths() {
+  const pages = TECHNOLOGY_ROUTES.map((route) => ({ technology: route, props: getDataForRoute('technology', route) }));
+  return pages.map(({ technology, props }) => ({ params: { technology }, props }));
+}
+const { technology } = Astro.params;
+const props = Astro.props as App.Technology;
+---
+
+<Layout title="Frontend Mentor | Crew">
+  <div class="grid-container">
+    <NumberedTitle label="Space Lauch 101" number="03" />
+    <picture class="picture">
+      <source media="(min-width: 960px)" srcset={props.images.portrait} />
+      <img src={props.images.landscape} srcset={props.images.landscape} alt={props.name} />
+    </picture>
+    <div class="informations grid">
+      <nav class="tabs flex">
+        {
+          TECHNOLOGY_ROUTES.map((route, index) => (
+            <TabBarNumber
+              active={route === technology}
+              number={index + 1}
+              href={generateUrl('technology', route)}
+              name={route}
+            />
+          ))
+        }
+      </nav>
+      <TwoLineTitle top="The Technology..." bottom={props.name} />
+      <p>{props.description}</p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .grid-container {
+    padding-block: var(--gutters-block);
+    grid-auto-rows: min-content;
+    grid-template-areas:
+      'numbered-title'
+      'picture'
+      'informations';
+  }
+  .grid-container :global(h1),
+  .informations {
+    padding-inline: var(--gutters-inline);
+  }
+  .picture {
+    grid-area: picture;
+  }
+  .picture > img {
+    width: 100%;
+  }
+  .informations {
+    grid-area: informations;
+    margin-top: 2rem;
+    --grid-gap: 2rem;
+    place-items: center;
+  }
+  .informations p {
+    max-width: 48ch;
+  }
+
+  @media (--screen-tablet) {
+    .tabs {
+      margin-block: 0.5rem;
+    }
+  }
+
+  @media (--screen-desktop) {
+    .grid-container {
+      --container-gap: 1.5rem;
+      --container-template-columns: auto 1fr;
+      padding-left: var(--gutters-inline);
+      padding-bottom: var(--gutters-bottom-clamp);
+      grid-template-areas:
+        'numbered-title .'
+        'informations picture';
+    }
+    .picture {
+      max-width: 32rem;
+      place-self: end;
+    }
+    .grid-container :global(h1),
+    .informations {
+      padding-inline: 0;
+    }
+    .informations {
+      grid-auto-columns: auto;
+      column-gap: 4rem !important;
+      grid-template-areas:
+        'tabs title'
+        'tabs description';
+    }
+    .tabs {
+      grid-area: tabs;
+      --flex-gap: 2rem;
+      flex-direction: column;
+    }
+    .informations :global(h2) {
+      grid-area: title;
+      place-self: end start;
+    }
+    .informations p {
+      grid-area: description;
+      place-self: start;
+    }
+  }
+</style>
+
+<style is:global>
+  body {
+    position: relative;
+  }
+  body::before {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: -9999;
+    opacity: 0.25;
+    background-image: url('/assets/technology/background-technology-mobile.jpg');
+    background-position: top;
+    background-size: cover;
+    background-blend-mode: screen;
+  }
+
+  @media (--screen-tablet) {
+    body::before {
+      background-image: url('/assets/technology/background-technology-tablet.jpg');
+    }
+  }
+
+  @media (--screen-desktop) {
+    body::before {
+      background-image: url('/assets/technology/background-technology-desktop.jpg');
+    }
+  }
+</style>

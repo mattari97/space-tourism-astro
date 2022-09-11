@@ -20,3 +20,5 @@ export const CREW_TABS: App.Route<Param<'crew'>>[] = [
   { name: 'victor', href: generateUrl('crew', 'victor') },
   { name: 'anousheh', href: generateUrl('crew', 'anousheh') },
 ];
+
+export const TECHNOLOGY_ROUTES: Param<'technology'>[] = ['launch_vehicle', 'spaceport', 'space_capsule'];

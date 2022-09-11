@@ -357,7 +357,6 @@ a:not([class]) {
   margin-inline: auto;
   column-gap: var(--container-gap, 2rem);
   text-align: center;
-  /* border: 2px solid green; */
 }
 
 @media (--screen-tablet) {
@@ -368,8 +367,7 @@ a:not([class]) {
 
 @media (--screen-desktop) {
   .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-    /* max-height: 47.75rem; */
+    grid-template-columns: var(--container-template-columns, repeat(2, 1fr));
     text-align: left;
     column-gap: var(--container-gap, 6rem);
   }

@@ -1,0 +1,25 @@
+---
+export interface Props {
+  top: string;
+  bottom: string;
+}
+
+const { bottom, top } = Astro.props;
+---
+
+<h2 class="uppercase space-y">
+  <span class="fs-lg ff-serif">{top}</span>
+  <span class="text-light fs-xl ff-serif">{bottom}</span>
+</h2>
+
+<style>
+  h2 {
+    --space-y: 0.5rem;
+  }
+  h2 > * {
+    display: block;
+  }
+  h2 > *:first-child {
+    opacity: 0.5;
+  }
+</style>
