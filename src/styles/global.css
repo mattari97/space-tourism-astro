@@ -73,7 +73,7 @@
 
     --gutters-inline: 2.5rem;
     --gutters-block: 2.5rem;
-    --gutters-bottom-clamp: var(--gutters-block);
+    --gutters-bottom-clamp: 5rem;
   }
 }
 
@@ -198,6 +198,15 @@ a:not([class]) {
 }
 .bg-light {
   background-color: hsl(var(--clr-light));
+}
+.bg-glass {
+  background-color: hsl(var(--clr-dark) / 0.5);
+}
+@supports (backdrop-filter: var(--backdrop-blur)) {
+  .bg-glass {
+    background-color: hsl(var(--clr-light) / 0.04);
+    backdrop-filter: var(--backdrop-blur);
+  }
 }
 .text-dark {
   color: hsl(var(--clr-dark));
