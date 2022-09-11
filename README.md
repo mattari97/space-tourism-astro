@@ -203,17 +203,15 @@ I think that I might create some dropdown menus in the navbar for the subroutes.
 
 ## Contribution
 
-You can use this project for whatever you want. **If you like it you might want to also star the repo**.
+You can use this project for whatever you want. Don't forget to leave a ⭐.
 
 - Fork the project to add it to your githug repositories.
 - Clone it on your local machine from you repositories.
 
-Create a folder on your machine and run the command `git clone https://add-the-correct-url-here`.
+Create a folder on your machine and run the command `git clone https://add-the-correct-url-here`
 
 - Install all the dependencies for astro and postcss.
 
-npm: `npm install`
-yarn: `yarn`
-pnpm: `pnpm install`
+`npm install` or `yarn` or `pnpm install`.
 
 - Open the project in your editor and start coding.
