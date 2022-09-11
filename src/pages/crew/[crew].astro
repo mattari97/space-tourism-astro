@@ -14,7 +14,7 @@ const { crew } = Astro.params;
 const props = Astro.props as App.Crew;
 ---
 
-<Layout title="Frontend Mentor | Crew">
+<Layout title={`Space Tourism | ${props.name}`}>
   <div class="grid-container">
     <NumberedTitle label="Meet your crew" number="02" />
     <div class="image-wrapper"><img src={props.images.webp} alt={props.name} /></div>

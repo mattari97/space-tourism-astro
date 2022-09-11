@@ -14,7 +14,7 @@ const { technology } = Astro.params;
 const props = Astro.props as App.Technology;
 ---
 
-<Layout title="Frontend Mentor | Crew">
+<Layout title={`Space Tourism | ${props.name}`}>
   <div class="grid-container">
     <NumberedTitle label="Space Lauch 101" number="03" />
     <picture class="picture">

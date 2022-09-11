@@ -17,7 +17,7 @@ const { destination } = Astro.params;
 const props = Astro.props as App.Destination;
 ---
 
-<Layout title="Frontend Mentor | Destination">
+<Layout title={`Space Tourism | ${props.name}`}>
   <div class="grid-container">
     <NumberedTitle label="Pick your destination" number="01" />
     <img src={props.images.webp} alt={props.name} />
