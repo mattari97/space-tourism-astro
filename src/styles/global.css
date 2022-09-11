@@ -362,10 +362,7 @@ a:not([class]) {
   margin-inline: auto;
   column-gap: var(--container-gap, 2rem);
   text-align: center;
-
   grid-auto-rows: var(--container-auto-rows, min-content);
-  padding-top: var(--container-pt, var(--gutters-block));
-  padding-bottom: var(--container-pb);
   padding: var(--container-padding, var(--gutters-block) var(--gutters-inline) var(--gutters-bottom-clamp));
 }
 
