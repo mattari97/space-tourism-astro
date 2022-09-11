@@ -1,0 +1,30 @@
+<footer class="text-muted">
+  <span>
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+  </span>
+  <span>Coded by <a href="https://github.com/AntoineC-dev" aria-label="Github">Antoine C</a>.</span>
+</footer>
+
+<style>
+  footer {
+    padding: 1rem var(--gutters-inline);
+    text-align: center;
+    font-size: 0.8125rem;
+    background-color: hsl(var(--clr-dark) / 0.5);
+  }
+
+  @supports (backdrop-filter: var(--backdrop-blur)) {
+    footer {
+      background-color: hsl(var(--clr-light) / 0.04);
+      backdrop-filter: var(--backdrop-blur);
+    }
+  }
+
+  footer > span {
+    display: inline-block;
+  }
+
+  footer a {
+    color: hsl(var(--clr-light));
+  }
+</style>
