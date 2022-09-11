@@ -56,6 +56,9 @@
   --gutters-inline: 1.5rem;
   --gutters-block: 1.5rem;
   --gutters-bottom-clamp: var(--gutters-block);
+
+  /* effects */
+  --backdrop-blur: blur(80px);
 }
 
 @media (--screen-tablet) {
