@@ -369,6 +369,5 @@ a:not([class]) {
   .grid-container {
     grid-template-columns: var(--container-template-columns, repeat(2, 1fr));
     text-align: left;
-    column-gap: var(--container-gap, 6rem);
   }
 }
