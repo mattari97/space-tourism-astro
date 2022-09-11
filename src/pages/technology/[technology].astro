@@ -15,7 +15,7 @@ const props = Astro.props as App.Technology;
 ---
 
 <Layout title={`Space Tourism | ${props.name}`}>
-  <div class="grid-container">
+  <main id="main-content" class="grid-container">
     <NumberedTitle label="Space Lauch 101" number="03" />
     <picture class="picture">
       <source media="(min-width: 960px)" srcset={props.images.portrait} />
@@ -37,7 +37,7 @@ const props = Astro.props as App.Technology;
       <TwoLineTitle top="The Technology..." bottom={props.name} />
       <p>{props.description}</p>
     </div>
-  </div>
+  </main>
 </Layout>
 
 <style>

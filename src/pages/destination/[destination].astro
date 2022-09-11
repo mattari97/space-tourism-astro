@@ -18,7 +18,7 @@ const props = Astro.props as App.Destination;
 ---
 
 <Layout title={`Space Tourism | ${props.name}`}>
-  <div class="grid-container">
+  <main id="main-content" class="grid-container">
     <NumberedTitle label="Pick your destination" number="01" />
     <img src={props.images.webp} alt={props.name} />
     <div class="informations grid">
@@ -38,7 +38,7 @@ const props = Astro.props as App.Destination;
         <DestinationMeta title="Est. travel time" content={props.distance} />
       </div>
     </div>
-  </div>
+  </main>
 </Layout>
 
 <style>
