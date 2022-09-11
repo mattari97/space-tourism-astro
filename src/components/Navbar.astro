@@ -16,7 +16,7 @@ const currentRoute = getCurrentRoute(Astro.url.pathname);
     <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
       <span class="sr-only">Menu</span>
     </button>
-    <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
+    <ul id="primary-navigation" data-visible="false" class="primary-navigation bg-glass flex">
       {
         BASE_ROUTES.map((route, index) => (
           <li>
@@ -51,15 +51,6 @@ const currentRoute = getCurrentRoute(Astro.url.pathname);
     margin-right: auto;
   }
 
-  .primary-navigation {
-    background-color: hsl(var(--clr-dark) / 0.5);
-  }
-  @supports (backdrop-filter: var(--backdrop-blur)) {
-    .primary-navigation {
-      background-color: hsl(var(--clr-light) / 0.04);
-      backdrop-filter: var(--backdrop-blur);
-    }
-  }
   .primary-navigation span {
     font-weight: var(--fw-bold);
     margin-right: 0.75rem;

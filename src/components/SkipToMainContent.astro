@@ -1,4 +1,4 @@
-<aside>
+<aside class="bg-glass">
   <a href="#main-content" class="text-muted">Skip to main content</a>
 </aside>
 
@@ -8,16 +8,8 @@
     top: 15%;
     left: 0;
     padding: 1rem 1.5rem;
-    background-color: hsl(var(--clr-dark) / 0.5);
     transform: translateX(-100%);
     transition: transform 300ms ease-out;
-  }
-
-  @supports (backdrop-filter: var(--backdrop-blur)) {
-    aside {
-      background-color: hsl(var(--clr-light) / 0.04);
-      backdrop-filter: var(--backdrop-blur);
-    }
   }
 
   aside:focus-within {

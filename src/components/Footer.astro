@@ -1,4 +1,4 @@
-<footer class="text-muted">
+<footer class="text-muted bg-glass">
   <span>
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
   </span>
@@ -7,21 +7,10 @@
 
 <style>
   footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    width: 100%;
     padding: 0.75rem 1.5rem;
     text-align: center;
     font-size: 0.75rem;
-    background-color: hsl(var(--clr-dark) / 0.5);
-    border-top-right-radius: 0.5rem;
-  }
-
-  @supports (backdrop-filter: var(--backdrop-blur)) {
-    footer {
-      background-color: hsl(var(--clr-light) / 0.04);
-      backdrop-filter: var(--backdrop-blur);
-    }
   }
 
   footer > span {
@@ -33,14 +22,20 @@
     transition: color 150ms linear;
   }
 
-  footer a:hover {
+  footer a:hover,
+  footer a:focus {
     color: hsl(var(--clr-light));
   }
 
   @media (--screen-tablet) {
     footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
       font-size: 0.875rem;
       padding-inline: 2.5rem;
+      border-top-right-radius: 0.5rem;
+      width: max-content;
     }
   }
 </style>
