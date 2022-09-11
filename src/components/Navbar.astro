@@ -1,6 +1,6 @@
 ---
-import { getCurrentRoute } from '$utils/navigation';
-import { APP_ROUTES } from '$constants/routes';
+import { getCurrentRoute, generateUrl } from '$utils/navigation';
+import { BASE_ROUTES } from '$constants/routes';
 
 const currentRoute = getCurrentRoute(Astro.url.pathname);
 ---
@@ -18,16 +18,16 @@ const currentRoute = getCurrentRoute(Astro.url.pathname);
     </button>
     <ul id="primary-navigation" data-visible="false" class="primary-navigation flex">
       {
-        APP_ROUTES.map((route, index) => (
+        BASE_ROUTES.map((route, index) => (
           <li>
             <a
               class:list={[
                 'nav-link underline-indicator uppercase text-light ls-wider ff-condensed fs-nav',
-                { active: route.name === currentRoute },
+                { active: route === currentRoute },
               ]}
-              href={route.href}>
+              href={generateUrl(route)}>
               <span aria-hidden="true">{index.toString().padStart(2, '0')}</span>
-              {route.name}
+              {route}
             </a>
           </li>
         ))

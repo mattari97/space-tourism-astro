@@ -1,28 +1,23 @@
 import pagesData from '$data/pages.json';
+import { Route, RouteParam, RouteWithParam, routes } from '$constants/routes';
 
-// const routes = ["destination", "crew", "technology"] as const;
-const routes = {
-  destination: ['moon', 'mars', 'europa', 'titan'] as const,
-  crew: ['douglas', 'mark', 'victor', 'anousheh'] as const,
-  technology: ['launch_vehicle', 'spaceport', 'space_capsule'] as const,
-} as const;
-
-export type Route = keyof typeof routes;
-export type Param<TRoute extends Route> = typeof routes[TRoute][number];
-
-export const getCurrentRoute = (pathname: string): 'home' | Route | undefined => {
-  if (pathname === '/') return 'home';
+export const getCurrentRoute = (pathname: string): Route | undefined => {
+  let count = 0;
   for (let key of Object.keys(routes)) {
+    console.log(++count);
+    if (pathname === '/') return 'home';
     if (pathname.includes(key)) return key as Route;
   }
   return undefined;
 };
 
-export const generateUrl = <T extends Route>(route: T, param: Param<T>) => {
+export const generateUrl = <T extends Route>(route: T, param?: RouteParam<T>) => {
+  if (route === 'home') return '/';
+  if (!param) return `/${route}/${routes[route][0]}`;
   return `/${route}/${param}`;
 };
 
-export const getDataForRoute = <T extends Route>(route: T, param: Param<T>) => {
+export const getDataForRoute = <T extends RouteWithParam>(route: T, param: RouteParam<T>) => {
   const dataset = pagesData[route];
   const index = dataset.findIndex((item) => item.id === param);
   return dataset[index];

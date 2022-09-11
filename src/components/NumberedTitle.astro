@@ -8,7 +8,7 @@ const { label, number } = Astro.props;
 ---
 
 <h1 class="uppercase fs-md ff-condensed ls-widest">
-  <span class="fw-bold">{number}</span><span>{label}</span>
+  <span aria-hidden="true" class="fw-bold">{number}</span><span>{label}</span>
 </h1>
 
 <style>
