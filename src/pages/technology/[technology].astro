@@ -75,7 +75,7 @@ const props = Astro.props as App.Technology;
     .grid-container {
       --container-gap: 1.5rem;
       --container-template-columns: auto 1fr;
-      --container-padding: 0 0 var(--gutters-bottom-clamp) var(--gutters-inline);
+      --container-padding: var(--gutters-block) 0 var(--gutters-bottom-clamp) var(--gutters-inline);
       grid-template-areas:
         'numbered-title .'
         'informations picture';
