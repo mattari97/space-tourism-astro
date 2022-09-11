@@ -24,7 +24,8 @@ import { generateUrl } from '$utils/navigation';
 
 <style>
   .grid-container {
-    padding: calc(var(--gutters-block) * 1.5) var(--gutters-inline) calc(var(--gutters-block) * 2);
+    --container-padding: calc(var(--gutters-block) * 1.5) var(--gutters-inline) calc(var(--gutters-block) * 2);
+    --container-auto-rows: auto;
     place-items: center;
     row-gap: clamp(2rem, calc(-0.56rem + 10.94vw), 6rem);
   }
@@ -32,14 +33,10 @@ import { generateUrl } from '$utils/navigation';
     display: block;
   }
 
-  .presentation p {
-    max-width: 48ch;
-  }
-
   @media (--screen-desktop) {
     .grid-container {
       place-items: end;
-      padding-bottom: var(--gutters-bottom-clamp);
+      padding-bottom: var(--gutters-bottom-clamp) !important;
     }
     .presentation {
       justify-self: start;

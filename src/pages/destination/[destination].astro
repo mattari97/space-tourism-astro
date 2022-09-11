@@ -43,7 +43,6 @@ const props = Astro.props as App.Destination;
 
 <style>
   .grid-container {
-    padding: var(--gutters-block) var(--gutters-inline);
     grid-template-areas:
       'numbered-title'
       'image'
@@ -70,9 +69,6 @@ const props = Astro.props as App.Destination;
     border-bottom: 1px solid hsl(var(--clr-divider));
   }
 
-  .presentation > p {
-    max-width: 45ch;
-  }
   .details {
     flex-direction: column;
     --flex-gap: 2rem;
@@ -93,9 +89,7 @@ const props = Astro.props as App.Destination;
 
   @media (--screen-desktop) {
     .grid-container {
-      place-items: end;
       grid-template-rows: min-content 1fr;
-      padding-bottom: var(--gutters-bottom-clamp);
       grid-template-areas:
         'numbered-title .'
         'image informations';

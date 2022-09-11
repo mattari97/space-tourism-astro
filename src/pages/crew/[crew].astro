@@ -2,6 +2,7 @@
 import Layout from '$layouts/Layout.astro';
 import NumberedTitle from '$components/NumberedTitle.astro';
 import TabBarDot from '$components/TabBarDot.astro';
+import TwoLineTitle from '$components/TwoLineTitle.astro';
 import { getDataForRoute, generateUrl } from '$utils/navigation';
 import { CREW_ROUTES } from '$constants/routes';
 
@@ -21,10 +22,7 @@ const props = Astro.props as App.Crew;
       {CREW_ROUTES.map((route) => <TabBarDot active={route === crew} href={generateUrl('crew', route)} name={route} />)}
     </nav>
     <div class="informations grid">
-      <h2 class="uppercase space-y">
-        <span class="fs-lg ff-serif">{props.role}</span>
-        <span class="text-light fs-xl ff-serif">{props.name}</span>
-      </h2>
+      <TwoLineTitle top={props.role} bottom={props.name} />
       <p>{props.bio}</p>
     </div>
   </div>
@@ -32,8 +30,6 @@ const props = Astro.props as App.Crew;
 
 <style>
   .grid-container {
-    padding: var(--gutters-block) var(--gutters-inline);
-    grid-auto-rows: min-content;
     grid-template-areas:
       'numbered-title'
       'image'
@@ -59,22 +55,14 @@ const props = Astro.props as App.Crew;
     --grid-gap: 2rem;
     place-items: center;
   }
-  .informations h2 {
-    --space-y: 0.5rem;
-  }
-  .informations h2 > * {
-    display: block;
-  }
-  .informations h2 > *:first-child {
-    opacity: 0.5;
-  }
-  .informations p {
-    max-width: 51ch;
-  }
+  /* .informations p {
+    max-width: 48ch;
+  } */
 
   @media (--screen-tablet) {
     .grid-container {
-      padding-bottom: 0;
+      --container-padding: var(--gutters-block) var(--gutters-inline) 0;
+      --container-template-columns: auto 1fr
       grid-template-areas:
         'numbered-title'
         'informations'

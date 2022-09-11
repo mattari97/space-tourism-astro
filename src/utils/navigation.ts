@@ -2,9 +2,7 @@ import pagesData from '$data/pages.json';
 import { Route, RouteParam, RouteWithParam, routes } from '$constants/routes';
 
 export const getCurrentRoute = (pathname: string): Route | undefined => {
-  let count = 0;
   for (let key of Object.keys(routes)) {
-    console.log(++count);
     if (pathname === '/') return 'home';
     if (pathname.includes(key)) return key as Route;
   }
