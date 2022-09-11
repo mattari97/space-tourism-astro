@@ -330,7 +330,7 @@ a:not([class]) {
   content: '';
   position: absolute;
   inset-inline: 0;
-  bottom: 0;
+  bottom: var(--underline-offset, 0);
   height: var(--underline-height, 3px);
   opacity: 0;
   transition: opacity 300ms linear, transform 300ms ease-in-out;
@@ -345,7 +345,8 @@ a:not([class]) {
   transform: scaleX(1);
   opacity: 1;
 }
-.underline-indicator:hover::after {
+.underline-indicator:hover::after,
+.underline-indicator:focus::after {
   transform-origin: left;
   transform: scaleX(1);
   opacity: 0.5;

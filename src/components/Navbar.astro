@@ -67,7 +67,7 @@ const currentRoute = getCurrentRoute(Astro.url.pathname);
 
   @media (--screen-mobile-only) {
     .primary-navigation a::after {
-      display: none;
+      --underline-offset: -0.5rem;
     }
     .primary-navigation {
       --flex-gap: 2rem;
