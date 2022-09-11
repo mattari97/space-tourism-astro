@@ -14,6 +14,7 @@ This is a solution to the [Space tourism website challenge on Frontend Mentor](h
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
+- [Contribution](#contribution)
 
 ## Overview
 
@@ -51,7 +52,7 @@ Users should be able to:
 - Mobile-first workflow
 - [Typescript](https://www.typescriptlang.org/)
 - [Astro](https://astro.build/)
-- [Postcss](https://postcss.org/) - A tool for transforming CSS with JavaScript.
+- [Postcss](https://postcss.org/)
 
 ### What I learned
 
@@ -140,7 +141,7 @@ module.exports = {
 
 - Skip to main content
 
-Open any page and press tab to focus the **Skip to main content** link. It allows user navigating with keyboards to skip the navbar when they arrive on a page.
+Open any page and press tab to focus the **Skip to main content** link. It allows users navigating with keyboards to skip the navbar when they arrive on a page.
 
 - Screen Readers only class
 
@@ -189,7 +190,7 @@ I used many aria attributes to improve accessibity especially in the navbar.
 
 ### Continued development
 
-I think that I light create some dropdown menus in the navbar for the subroutes.
+I think that I might create some dropdown menus in the navbar for the subroutes.
 
 ### Useful resources
 
@@ -198,4 +199,21 @@ I think that I light create some dropdown menus in the navbar for the subroutes.
 
 ## Author
 
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Frontend Mentor - [@AntoineC-dev](https://www.frontendmentor.io/profile/AntoineC-dev)
+
+## Contribution
+
+You can use this project for whatever you want. **If you like it you might want to also star the repo**.
+
+- Fork the project to add it to your githug repositories.
+- Clone it on your local machine from you repositories.
+
+Create a folder on your machine and run the command `git clone https://add-the-correct-url-here`.
+
+- Install all the dependencies for astro and postcss.
+
+npm: `npm install`
+yarn: `yarn`
+pnpm: `pnpm install`
+
+- Open the project in your editor and start coding.
