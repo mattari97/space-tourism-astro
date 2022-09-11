@@ -3,19 +3,15 @@ import Layout from '$layouts/Layout.astro';
 import NumberedTitle from '$components/NumberedTitle.astro';
 import DestinationMeta from '$components/DestinationMeta.astro';
 import TabBarItem from '$components/TabBarItem.astro';
-import { getDataForRoute, Param } from '$utils/navigation';
-import { DESTINATION_TABS } from '$constants/routes';
+import { getDataForRoute, generateUrl } from '$utils/navigation';
+import { DESTINATION_ROUTES } from '$constants/routes';
 
 export function getStaticPaths() {
-  const pages: { destination: Param<'destination'>; props: any }[] = [
-    { destination: 'moon', props: getDataForRoute('destination', 'moon') },
-    { destination: 'mars', props: getDataForRoute('destination', 'mars') },
-    { destination: 'europa', props: getDataForRoute('destination', 'europa') },
-    { destination: 'titan', props: getDataForRoute('destination', 'titan') },
-  ];
-  return pages.map(({ destination, props }) => {
-    return { params: { destination }, props };
-  });
+  const pages = DESTINATION_ROUTES.map((route) => ({
+    destination: route,
+    props: getDataForRoute('destination', route),
+  }));
+  return pages.map(({ destination, props }) => ({ params: { destination }, props }));
 }
 const { destination } = Astro.params;
 const props = Astro.props as App.Destination;
@@ -28,8 +24,8 @@ const props = Astro.props as App.Destination;
     <div class="informations grid">
       <nav class="tabs flex">
         {
-          DESTINATION_TABS.map((tab) => (
-            <TabBarItem active={tab.name === destination} href={tab.href} name={tab.name} />
+          DESTINATION_ROUTES.map((route) => (
+            <TabBarItem active={route === destination} href={generateUrl('destination', route)} name={route} />
           ))
         }
       </nav>

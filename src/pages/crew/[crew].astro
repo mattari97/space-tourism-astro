@@ -2,19 +2,12 @@
 import Layout from '$layouts/Layout.astro';
 import NumberedTitle from '$components/NumberedTitle.astro';
 import TabBarDot from '$components/TabBarDot.astro';
-import { getDataForRoute, Param } from '$utils/navigation';
-import { CREW_TABS } from '$constants/routes';
+import { getDataForRoute, generateUrl } from '$utils/navigation';
+import { CREW_ROUTES } from '$constants/routes';
 
 export function getStaticPaths() {
-  const pages: { crew: Param<'crew'>; props: any }[] = [
-    { crew: 'douglas', props: getDataForRoute('crew', 'douglas') },
-    { crew: 'mark', props: getDataForRoute('crew', 'mark') },
-    { crew: 'victor', props: getDataForRoute('crew', 'victor') },
-    { crew: 'anousheh', props: getDataForRoute('crew', 'anousheh') },
-  ];
-  return pages.map(({ crew, props }) => {
-    return { params: { crew }, props };
-  });
+  const pages = CREW_ROUTES.map((route) => ({ crew: route, props: getDataForRoute('crew', route) }));
+  return pages.map(({ crew, props }) => ({ params: { crew }, props }));
 }
 const { crew } = Astro.params;
 const props = Astro.props as App.Crew;
@@ -25,7 +18,7 @@ const props = Astro.props as App.Crew;
     <NumberedTitle label="Meet your crew" number="02" />
     <div class="image-wrapper"><img src={props.images.webp} alt={props.name} /></div>
     <nav class="tabs flex">
-      {CREW_TABS.map((tab) => <TabBarDot active={tab.name === crew} href={tab.href} name={tab.name} />)}
+      {CREW_ROUTES.map((route) => <TabBarDot active={route === crew} href={generateUrl('crew', route)} name={route} />)}
     </nav>
     <div class="informations grid">
       <h2 class="uppercase space-y">

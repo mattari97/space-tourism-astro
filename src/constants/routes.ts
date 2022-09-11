@@ -7,18 +7,10 @@ export const APP_ROUTES: App.Route<Route | 'home'>[] = [
   { name: 'technology', href: generateUrl('technology', 'launch_vehicle') },
 ];
 
-export const DESTINATION_TABS: App.Route<Param<'destination'>>[] = [
-  { name: 'moon', href: generateUrl('destination', 'moon') },
-  { name: 'mars', href: generateUrl('destination', 'mars') },
-  { name: 'europa', href: generateUrl('destination', 'europa') },
-  { name: 'titan', href: generateUrl('destination', 'titan') },
-];
+export const BASE_ROUTES = ['home', 'destination', 'crew', 'technology'];
 
-export const CREW_TABS: App.Route<Param<'crew'>>[] = [
-  { name: 'douglas', href: generateUrl('crew', 'douglas') },
-  { name: 'mark', href: generateUrl('crew', 'mark') },
-  { name: 'victor', href: generateUrl('crew', 'victor') },
-  { name: 'anousheh', href: generateUrl('crew', 'anousheh') },
-];
+export const DESTINATION_ROUTES: Param<'destination'>[] = ['moon', 'mars', 'europa', 'titan'];
+
+export const CREW_ROUTES: Param<'crew'>[] = ['douglas', 'mark', 'victor', 'anousheh'];
 
 export const TECHNOLOGY_ROUTES: Param<'technology'>[] = ['launch_vehicle', 'spaceport', 'space_capsule'];
